@@ -18,7 +18,7 @@ Pour l'instant, il est possible de se servir du script uniquement dans Pyzo. Il 
   
   Cette fonction retourne le nombre total de points d'expérience que rapporte la créature en fonction de :
     - son niveau, sachant que les niveaux vont de 1 à 20;
-    - sa nature, il y a plusieurs natures possibles : Humanoïdes, Bête, Démon, Inorganique, Volatiles,       Aquatique, Revenants, Fée, Dragon, Inconnu, Titan, Déité
+    - sa nature, il y a plusieurs natures possibles : Humanoïdes, Bête, Démon, Inorganique, Volatiles,       Aquatique, Revenants, Fée, Dragon, Inconnu, Titan, Ancien
     - de son indice de menace : l'indice de menace est calculé dans un fichier Excel en fonction de(s)       critère(s) que la créature rempli(s)
 
 * **get_courbe_experience(progression, base_experience, creature)**
