@@ -1,11 +1,46 @@
 ################################################################################
 # ~ Auteur: Gabriel DELAGE                                                     #
 # ~ Mail: delage.gabriel83@gmail.com                                           #
-# ~ Version: 1.0.0.0                                                           #
+# ~ Version: 1.1.0.0                                                           #
 # ~ Date de création: lundi 23 janvier 2023                                    #
 ################################################################################
 from random import *
 from math import *
+
+################################################################################
+# <summary>Méthode qui permet d'arrondir à 0 ou 5 le dernier chiffre           #
+# d'un nombre</summary>                                                        #
+# <param>nnombre(int) le nombre à arrondir</param>                             #
+################################################################################
+def set_nombre(nombre):
+    # Conversion du nombre entré en string
+    nombre_str = str(nombre)
+    # Chaîne de caractère qui accueillera le nouveau nombre
+    nouveau_nombre = ""
+
+    for i in range(len(nombre_str)):
+        # Si i est égal à l'index 0, on conserve le chiffre
+        if i == 0:
+            nouveau_nombre += str(nombre_str[i])
+        # Sinon:
+        else:
+            # Si i+1 est égal à la longueur de notre nombre sous forme de chaîne
+            # de caractère
+            if i+1 == len(nombre_str):
+                # Si le chiffre dont l'index est égal à i est entre 0 ET 4
+                if int(nombre_str[i]) >= 0 and int(nombre_str[i]) <= 4:
+                    # Alors le dernier chiffre sera 0
+                    nouveau_nombre += "0"
+                # Sinon si le chiffre dont l'index est égal à i est entre 5 et 9
+                elif int(nombre_str[i]) >= 5 and int(nombre_str[i]) <= 9:
+                    # Alors le dernier chiffre sera 5
+                    nouveau_nombre += "5"
+            # Sinon
+            else:
+                # On ajoute le chiffre au nouveau nombre dont l'index est à égal
+                # à i
+                nouveau_nombre += str(nombre_str[i])
+    return int(nouveau_nombre)
 
 ################################################################################
 # <summary>Méthode Calcul_Exp qui permet de calculer l'expérience              #
@@ -110,10 +145,11 @@ def get_experience_ennemi(niveau, nature, indice_menace):
             case 20:
                 base = randint(190,201)
                 multiplicateur = 30
-        return round(((base + (niveau * indice_menace) / modificateur) *
-        multiplicateur) / 4)
+        return set_nombre(round(((base + (niveau * indice_menace) / modificateur) *
+        multiplicateur) / 4))
     except:
         return "Une ou plusieurs information rentrées ne sont pas valides"
+
 ################################################################################
 # <summary>Méthode qui renvoie la courbe d'expérience                          #
 # de la créature</summary>                                                     #
@@ -147,12 +183,12 @@ def get_courbe_experience(progression, base_experience, creature):
                 for i in range(1,19):
                     modificateur *= 1.33
                     experience_totale += modificateur
-                    print(round(experience_totale), "—", i+1)
+                    print(set_nombre(round(experience_totale)), "—", i+1)
             case "Familier":
                 for i in range(1,9):
                     modificateur *= 1.33
                     experience_totale += modificateur
-                    print(round(experience_totale),"—",i+1)
+                    print(set_nombre(round(experience_totale)), "—", i+1)
         return "Calcul terminé !"
     except:
         print("Une erreur a été rencontrée.")
